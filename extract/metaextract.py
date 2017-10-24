@@ -331,7 +331,9 @@ def start(**kwargs):
     global file_list_input_candidates
     # create dummy file to indicate latest data structure
     try:
-        with open(os.path.join("schema", "json", "dummy.json"), 'w', encoding='utf-8') as dummyfile:
+        dummy_file_path = os.path.join(os.path.dirname(os.path.dirname( __file__ )), "schema", "json", "dummy.json");
+        status_note(['Using dummy schema file from ', dummy_file_path], d=is_debug)
+        with open(dummy_file_path, 'w', encoding='utf-8') as dummyfile:
             dummyfile.write(json.dumps(MASTER_MD_DICT, sort_keys=True, indent=4, separators=(',', ': ')))
     except Exception as exc:
         if is_debug:
